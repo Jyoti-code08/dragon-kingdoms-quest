@@ -171,7 +171,6 @@ const GameCtx = createContext<Ctx | null>(null);
 export function GameProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<GameState>(emptyState);
   const [hasSave, setHasSave] = useState(false);
-  const [hydrated, setHydrated] = useState(false);
   const ref = useRef(state);
   ref.current = state;
 
@@ -185,7 +184,6 @@ export function GameProvider({ children }: { children: ReactNode }) {
     } catch {
       /* ignore */
     }
-    setHydrated(true);
   }, []);
 
   const persist = useCallback((s: GameState) => {
@@ -387,8 +385,6 @@ export function GameProvider({ children }: { children: ReactNode }) {
     () => ({ state, set, hasSave, newGame, continueGame, saveGame, applyEffects, log, goto, relationOf }),
     [state, set, hasSave, newGame, continueGame, saveGame, applyEffects, log, goto, relationOf],
   );
-
-  if (!hydrated) return null;
 
   return <GameCtx.Provider value={value}>{children}</GameCtx.Provider>;
 }
