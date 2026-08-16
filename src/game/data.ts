@@ -568,19 +568,19 @@ export const ENEMIES: Enemy[] = [
 export const enemyById = (id: string) => ENEMIES.find((e) => e.id === id)!;
 
 export interface Effects {
-  gold?: number;
-  army?: number;
-  food?: number;
-  reputation?: number;
-  influence?: number;
-  xp?: number;
-  bond?: number;
-  relation?: { id: string; delta: number }[];
-  territory?: string;
-  loseTerritory?: string;
-  unlockDragon?: string;
-  unlockLocation?: string;
-  item?: string;
+  gold?: number | undefined;
+  army?: number | undefined;
+  food?: number | undefined;
+  reputation?: number | undefined;
+  influence?: number | undefined;
+  xp?: number | undefined;
+  bond?: number | undefined;
+  relation?: { id: string; delta: number }[] | undefined;
+  territory?: string | undefined;
+  loseTerritory?: string | undefined;
+  unlockDragon?: string | undefined;
+  unlockLocation?: string | undefined;
+  item?: string | undefined;
 }
 
 export interface QuestChoice {

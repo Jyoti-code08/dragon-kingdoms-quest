@@ -66,7 +66,11 @@ export function Realm() {
   const [tab, setTab] = useState<Tab>("realm");
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeQuest, setActiveQuest] = useState<Quest | null>(null);
-  const [pending, setPending] = useState<{ enemyId: string; questId?: string; choiceId?: string } | null>(null);
+  const [pending, setPending] = useState<{
+    enemyId: string;
+    questId?: string | undefined;
+    choiceId?: string | undefined;
+  } | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [talking, setTalking] = useState<Character | null>(null);
   const [lastTribute, setLastTribute] = useState(0);
@@ -1072,7 +1076,8 @@ function QuestModal({
   );
 }
 
-function summarise(e: Record<string, unknown>) {
+function summarise(effects: import("@/game/data").Effects) {
+  const e = effects as unknown as Record<string, unknown>;
   const map: Record<string, string> = {
     gold: "gold",
     army: "army",
